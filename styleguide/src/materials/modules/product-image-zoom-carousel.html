@@ -1,0 +1,38 @@
+---
+notes: |
+  This includes both a carousel and the product image zoom feature. The zoom
+  feature intentionally will not work for desktop since no pinch events are
+  currently no supported by Desktop browsers, well at least without it being
+  introduced.
+
+  This module expects certain data attributes:
+
+  ```
+
+  @param {array} images - Images used consumed when zooming
+  @param {string} tapToZoom - i18n text used for the tap to zoom badge
+  @param {string} noImages - i18n text used when no images have been provided
+  ```
+
+  Toggle the code to see an example.
+---
+
+<div class="product__image u-margin--center product__image--md"
+  data-images='{{{json pdp.carousel}}}'
+  data-tap-to-zoom="Tap to Zoom"
+  data-no-images="Got no images dude">
+  <div class="product__image--carousel">
+
+    {{#each pdp.carousel}}
+    <img class="product__image--carousel__image" data-zoom="{{this}}"
+      {{#if @first}}
+        src="{{this}}"
+        alt="{{../pdp.brand}} {{../pdp.name}}"
+      {{else}}
+        data-lazy="{{this}}"
+      {{/if}}
+    />
+    {{/each}}
+
+  </div>
+</div>

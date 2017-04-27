@@ -1,0 +1,34 @@
+/**
+
+  @truncate
+
+*/
+
+.u-truncate {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4; // a default, for no modifier
+  padding: 0 !important; // padding will hide text
+
+  $clamps: (
+    show: 999 !important, // untruncates, showing all the text (used for toggling)
+    short: 2,
+    long: 10,
+    1: 1,
+    2: 2,
+    3: 3,
+    4: 4,
+    5: 5,
+  );
+
+  @each $modifier, $lines in $clamps {
+    &--#{$modifier} {
+      -webkit-line-clamp: #{$lines};
+    }
+  }
+
+  &__toggle {
+    @extend %h4;
+  }
+}
